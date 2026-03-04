@@ -1,4 +1,5 @@
 library(ggplot2)
+
 data("VADeaths")
 
 df <- as.data.frame(VADeaths)
@@ -8,6 +9,8 @@ df_long <- data.frame(
   Category = rep(colnames(df), each = nrow(df)),
   DeathRate = as.vector(as.matrix(df))
 )
+
+# Plot 1
 p1 <- ggplot(df_long, aes(x = DeathRate)) +
   geom_histogram(binwidth = 5, fill = "skyblue", color = "black") +
   labs(title = "Histogram of VA Death Rates",
@@ -15,8 +18,10 @@ p1 <- ggplot(df_long, aes(x = DeathRate)) +
        y = "Frequency") +
   theme_minimal()
 
-ggsave("plots/week1A_plot-1.png", plot = p1)
+ggsave("week1A_plot-1.png", plot = p1)
 p1
+
+# Plot 2
 p2 <- ggplot(df_long, aes(x = DeathRate)) +
   geom_histogram(binwidth = 5, fill = "orange", color = "black") +
   facet_wrap(~Category) +
@@ -25,8 +30,10 @@ p2 <- ggplot(df_long, aes(x = DeathRate)) +
        y = "Frequency") +
   theme_classic()
 
-ggsave("plots/week1A_plot-2.png", plot = p2)
+ggsave("week1A_plot-2.png", plot = p2)
 p2
+
+# Plot 3
 p3 <- ggplot(df_long, aes(x = DeathRate, fill = Category)) +
   geom_histogram(binwidth = 5, alpha = 0.5, position = "identity") +
   labs(title = "Overlapping Histogram",
@@ -34,5 +41,5 @@ p3 <- ggplot(df_long, aes(x = DeathRate, fill = Category)) +
        y = "Frequency") +
   theme_light()
 
-ggsave("plots/week1A_plot-3.png", plot = p3)
+ggsave("week1A_plot-3.png", plot = p3)
 p3
